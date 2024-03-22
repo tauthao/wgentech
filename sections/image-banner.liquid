@@ -6,9 +6,12 @@
       #Banner-{{ section.id }}::before,
       #Banner-{{ section.id }} .banner__media::before,
       #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+        padding-bottom: 100%;
         content: '';
         display: block;
+      }
+      #Banner-{{ section.id }} .banner__media img {
+        object-position: right;
       }
     }
 
@@ -119,15 +122,26 @@
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
+          {%- when 'sub_heading' -%}
+            <span
+              class="banner__sub--heading inline-richtext {{ block.settings.heading_size }}"
+              style="color: {{ block.settings.color }}" 
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.heading }}
+            </span>
           {%- when 'heading' -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
+               style="color: {{ block.settings.color }}" 
               {{ block.shopify_attributes }}
             >
               {{ block.settings.heading }}
             </h2>
           {%- when 'text' -%}
-            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}
+              style="color: {{ block.settings.color }}" 
+              >
               <p>{{ block.settings.text }}</p>
             </div>
           {%- when 'buttons' -%}
@@ -363,6 +377,25 @@
   ],
   "blocks": [
     {
+      "type": "sub_heading",
+      "name": "Sub heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Welcome",
+          "label": "t:sections.image-banner.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Text color",
+          "default": "#96BB7C"
+        }
+      ]
+    },
+    {
       "type": "heading",
       "name": "t:sections.image-banner.blocks.heading.name",
       "limit": 1,
@@ -392,6 +425,12 @@
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Text color",
+          "default": "#252B42"
         }
       ]
     },
@@ -401,9 +440,8 @@
       "limit": 1,
       "settings": [
         {
-          "type": "inline_richtext",
+          "type": "richtext",
           "id": "text",
-          "default": "Give customers details about the banner image(s) or content on the template.",
           "label": "t:sections.image-banner.blocks.text.settings.text.label"
         },
         {
@@ -425,6 +463,12 @@
           ],
           "default": "body",
           "label": "t:sections.image-banner.blocks.text.settings.text_style.label"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Text color",
+          "default": "#737373"
         }
       ]
     },
