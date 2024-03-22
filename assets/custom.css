@@ -146,7 +146,7 @@ body {
     align-items: center;
     font-weight: 700;
     color: var(--color-primary);
-    gap: 10px;
+    gap: 5px;
     margin-top: 38px;
     border:none;
 }
@@ -227,7 +227,7 @@ body {
 	font-size: 16px;
 	line-height: 24px;
 	font-weight: 700;
-	margin-top: 6px;
+	margin-top: 10px;
 	letter-spacing: 0.1px;
 }
 .multicolumn .multicolumn-list .rte {
@@ -251,6 +251,73 @@ body {
 .list-social .list-social__item .icon {
 	width: auto;
 	height: auto;
+}
+/* Footer */
+.footer {
+	border: 0 !important;
+}
+.footer__blocks-wrapper {
+	--grid-desktop-horizontal-spacing: 0;
+	padding-right: 20px;
+}
+.footer__copyright {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 !important;
+	padding-right: 52px;
+}
+.footer .footer-block {
+	padding-right: 20px;
+}
+.footer .list-menu__item--link {
+	padding: 0;
+	line-height: 24px;
+	letter-spacing: 0.2px;
+	color: var(--second-text-color);
+}
+.footer .footer-block__heading {
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 700;
+	letter-spacing: 0.1px;
+}
+.footer-block__details-content li + li {
+	margin-top: 10px;
+}
+.footer .copyright__content {
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 700;
+	letter-spacing: 0.2px;
+	color: var(--second-text-color);
+}
+.footer-block:last-child {
+	padding-right: 0;
+}
+.footer-block__details-info > span {
+	display: flex;
+	align-items: center;
+	line-height: 24px;
+	font-weight: 700;
+	letter-spacing: 0.2px;
+	gap: 10px;
+}
+.footer-block__details-info > span span {
+	display: flex;
+}
+.footer-block__details-info > span p {
+	margin: 0;
+}
+.footer-block__details-info > span + span {
+	margin-top: 10px;
+}
+.footer .footer__content-bottom {
+	background: #FAFAFA;
+	border: 0;
+	padding-top: 16px;
+	padding-bottom: 16px;
 }
 /* Responsive */
 @media screen and (max-width:1024px){
@@ -341,6 +408,13 @@ body {
   .multicolumn-list:not(.slider) {
       padding: 0 !important;
   }
+  .footer-block__details-content .list-menu__item--link {
+		padding: 0 !important;
+	}
+	.footer__content-top {
+		padding-left: var(--padding-container) !important;
+		padding-right: var(--padding-container) !important;
+	}
 }
 @media screen and (min-width: 750px) {
     .image-with-text .image-with-text__media-item {
@@ -357,5 +431,8 @@ body {
 
   .image-with-text__text-item .image-with-text__content {
     padding: 0 0 4px 60px;
+  }
+  .image-with-text {
+    padding-top:9px;
   }
 }
