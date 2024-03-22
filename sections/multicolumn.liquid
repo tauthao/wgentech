@@ -32,9 +32,19 @@
   >
     {%- unless section.settings.title == blank -%}
       <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin">
+        {% if section.settings.sub_title != blank %}
+          <span class="sub_title">
+            {{ section.settings.sub_title }}
+          </span>
+        {% endif %}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}">
           {{ section.settings.title }}
         </h2>
+        {% if section.settings.info != blank %}
+          <div class="content">
+            {{ section.settings.info }}
+          </div>
+        {% endif %}
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
           <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
             {{- section.settings.button_label | escape -}}
@@ -125,6 +135,38 @@
                 {%- if block.settings.text != blank -%}
                   <div class="rte">{{ block.settings.text }}</div>
                 {%- endif -%}
+                
+                {%- if block.settings.social_fb != blank or
+                      block.settings.social_ins != blank or
+                      block.settings.social_tw != blank
+                -%}
+                  <ul class="list-unstyled list-social" role="list">
+                    {%- if block.settings.social_fb != blank -%}
+                      <li class="list-social__item">
+                        <a href="{{ block.settings.social_fb }}" class="link list-social__link">
+                          {%- render 'icon-facebook' -%}
+                          <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+                        </a>
+                      </li>
+                    {%- endif -%}
+                    {%- if block.settings.social_ins != blank -%}
+                      <li class="list-social__item">
+                        <a href="{{ block.settings.social_ins }}" class="link list-social__link">
+                          {%- render 'icon-instagram' -%}
+                          <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+                        </a>
+                      </li>
+                    {%- endif -%}
+                    {%- if block.settings.social_tw != blank -%}
+                      <li class="list-social__item">
+                        <a href="{{ block.settings.social_tw }}" class="link list-social__link">
+                          {%- render 'icon-twitter' -%}
+                          <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+                        </a>
+                      </li>
+                    {%- endif -%}
+                  </ul>
+                {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
                   <a
                     class="link animate-arrow"
@@ -198,10 +240,21 @@
   },
   "settings": [
     {
+      "type": "text",
+      "id": "sub_title",
+      "default": "Team",
+      "label": "Sub heading"
+    },
+    {
       "type": "inline_richtext",
       "id": "title",
       "default": "Multicolumn",
       "label": "t:sections.multicolumn.settings.title.label"
+    },
+    {
+      "type": "richtext",
+      "id": "info",
+      "label": "Content"
     },
     {
       "type": "select",
@@ -402,6 +455,24 @@
           "type": "text",
           "id": "link_label",
           "label": "t:sections.multicolumn.blocks.column.settings.link_label.label"
+        },
+        {
+          "type": "text",
+          "id": "social_fb",
+          "label": "Social facebook",
+          "default": "#"
+        },
+        {
+          "type": "text",
+          "id": "social_ins",
+          "label": "Social instagram",
+          "default": "#"
+        },
+        {
+          "type": "text",
+          "id": "social_tw",
+          "label": "Social twitter",
+          "default": "#"
         },
         {
           "type": "url",
